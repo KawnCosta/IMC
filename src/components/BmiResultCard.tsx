@@ -5,7 +5,6 @@ import { CATEGORY_STYLES } from '@/components/bmiCategoryStyles'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { useShareResult, type ShareStatus } from '@/hooks/useShareResult'
-import { trackEvent } from '@/lib/analytics'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
 import { cn } from '@/lib/utils'
 
@@ -28,7 +27,6 @@ export function BmiResultCard({ result, cardRef, onReset }: BmiResultCardProps) 
   const formattedBmi = formatNumber(bmi)
 
   function handleShare(): void {
-    trackEvent('share_result')
     void share({
       title: 'Meu resultado de IMC',
       text: `Meu IMC é ${formattedBmi} kg/m² (${category.label.toLowerCase()}). Calcule o seu:`,

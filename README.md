@@ -13,7 +13,7 @@ educativo com fontes.
 - Seções educativas com links para a OMS e o CDC.
 - Modo escuro (segue o sistema e lembra a escolha) e histórico dos últimos 10 cálculos salvo só no navegador.
 - SEO: título, descrição, canonical, Open Graph, `robots.txt` e `sitemap.xml` gerados no build.
-- Medição opcional com Google Analytics 4, sem enviar peso, altura ou resultado.
+- Sem banco de dados nem rastreamento: nada do que é digitado sai do navegador.
 
 ## Classificação usada (OMS, adultos)
 
@@ -50,14 +50,13 @@ npm run build
 npm run preview                    # confira o build localmente
 ```
 
-Na Vercel ou na Netlify, cadastre `VITE_SITE_URL` (e, se quiser, `VITE_GA_MEASUREMENT_ID`) nas variáveis de ambiente
-do projeto. As duas plataformas detectam o Vite sozinhas.
+Na Vercel ou na Netlify, cadastre `VITE_SITE_URL` nas variáveis de ambiente do projeto. As duas plataformas detectam o Vite sozinhas.
 
 ## Estrutura
 
 ```
 src/
-├── lib/           # regras puras, sem React (bmi.ts, storage.ts, analytics.ts) e testes
+├── lib/           # regras puras, sem React (bmi.ts, storage.ts) e testes
 ├── hooks/         # estado e comportamento (useBmiCalculator, useShareResult, useTheme, useBmiHistory)
 ├── components/    # partes da interface
 │   └── ui/        # componentes gerados pelo shadcn (não editar à mão)

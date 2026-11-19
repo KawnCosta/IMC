@@ -7,7 +7,6 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useBmiCalculator } from '@/hooks/useBmiCalculator'
 import { useBmiHistory } from '@/hooks/useBmiHistory'
-import { trackEvent } from '@/lib/analytics'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
 
 function describeResult(result: BmiResult | null): string {
@@ -44,7 +43,6 @@ function App() {
       return
     }
     history.addEntry(outcome.result)
-    trackEvent('calculate_bmi')
   }
 
   function handleReset(): void {
