@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { BmiForm, type BmiInputRefs } from '@/components/BmiForm'
 import { BmiResultCard } from '@/components/BmiResultCard'
+import { InfoSections } from '@/components/InfoSections'
 import { useBmiCalculator } from '@/hooks/useBmiCalculator'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
 
@@ -41,8 +42,14 @@ function App() {
   }
 
   return (
-    <main className="mx-auto flex min-h-svh max-w-xl flex-col gap-6 px-4 py-10">
-      <h1 className="text-3xl font-bold tracking-tight">Calculadora de IMC</h1>
+    <main className="mx-auto flex min-h-svh max-w-2xl flex-col gap-6 px-4 py-10">
+      <header className="grid gap-2">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Calculadora de IMC</h1>
+        <p className="text-base text-muted-foreground">
+          Calcule seu Índice de Massa Corporal e veja a classificação para adultos, com a faixa de peso adequada para
+          a sua altura.
+        </p>
+      </header>
 
       <BmiForm
         values={values}
@@ -58,6 +65,10 @@ function App() {
       </p>
 
       {result && <BmiResultCard result={result} cardRef={resultRef} onReset={handleReset} />}
+
+      <div className="mt-8 border-t pt-10">
+        <InfoSections />
+      </div>
     </main>
   )
 }

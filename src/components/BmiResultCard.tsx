@@ -63,8 +63,8 @@ export function BmiResultCard({ result, cardRef, onReset }: BmiResultCardProps) 
           </p>
 
           <p className="rounded-lg bg-muted p-3 text-sm text-muted-foreground">
-            O IMC é uma ferramenta de triagem, não um diagnóstico. Ele não mede gordura corporal nem considera massa
-            muscular, idade ou sexo. Para avaliar sua saúde, procure um profissional.
+            O IMC é uma ferramenta de triagem, não um diagnóstico. Ele não mede a gordura corporal diretamente e não
+            diferencia gordura de músculo. Para avaliar sua saúde, procure um profissional.
           </p>
         </CardContent>
 
