@@ -62,7 +62,7 @@ export function BmiResultCard({ result, cardRef, onReset }: BmiResultCardProps) 
             <strong>{formatNumber(healthyWeight.min)} kg</strong> a <strong>{formatNumber(healthyWeight.max)} kg</strong>.
           </p>
 
-          <p className="rounded-lg bg-muted p-3 text-sm text-muted-foreground">
+          <p className="rounded-lg bg-muted p-3 text-sm text-foreground">
             O IMC é uma ferramenta de triagem, não um diagnóstico. Ele não mede a gordura corporal diretamente e não
             diferencia gordura de músculo. Para avaliar sua saúde, procure um profissional.
           </p>
