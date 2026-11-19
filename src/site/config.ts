@@ -18,11 +18,11 @@ export const CONTACT = {
   url: `${REPOSITORY_URL}/issues`,
 } as const
 
-/**
- * Provedor de hospedagem, citado na política de privacidade. Preencha ao escolher o host:
- * ex.: { name: 'Vercel', privacyUrl: 'https://vercel.com/legal/privacy-policy' }.
- */
-export const HOSTING_PROVIDER: { name: string; privacyUrl: string } | null = null
+/** Provedor de hospedagem, citado na política de privacidade. Use null se o site não estiver publicado. */
+export const HOSTING_PROVIDER: { name: string; privacyUrl: string } | null = {
+  name: 'Netlify',
+  privacyUrl: 'https://www.netlify.com/privacy/',
+}
 
 /** Datas em ISO (AAAA-MM-DD). Atualize sempre que o texto correspondente mudar. */
 export const LAST_UPDATED = {

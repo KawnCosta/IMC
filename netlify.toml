@@ -1,0 +1,8 @@
+# Site 100% estático: a Netlify roda o build e publica só a pasta dist/.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # O script de pré-renderização é TypeScript executado direto pelo Node, o que exige Node 24 ou mais novo.
+  NODE_VERSION = "24"

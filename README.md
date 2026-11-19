@@ -61,7 +61,10 @@ O `npm run build` tem quatro etapas:
 2. `vite build`: gera os arquivos do navegador em `dist/`.
 3. `vite build --ssr src/entry-server.tsx`: gera, em `dist-server/`, o código que renderiza as páginas no Node.
 4. `node scripts/prerender.ts`: escreve o HTML pronto de cada página (`dist/sobre/index.html`...), o `404.html`, o
-   `robots.txt` e o `sitemap.xml`.
+   `robots.txt` e o `sitemap.xml`, e depois apaga o `dist-server/`.
+
+Não existe servidor em produção: o `dist-server/` é só uma pasta temporária do build. O site publicado é a pasta
+`dist/`, só com arquivos estáticos.
 
 O endereço público do site fica num único lugar, a variável `VITE_SITE_URL`, usada no canonical, no Open Graph, no
 JSON-LD, no `robots.txt` e no `sitemap.xml`. **Sem ela, o build falha de propósito**, para nunca publicar o site com
@@ -73,7 +76,10 @@ npm run build
 npm run preview                    # confira o build localmente
 ```
 
-Na Vercel ou na Netlify, cadastre `VITE_SITE_URL` nas variáveis de ambiente do projeto. As duas plataformas detectam o Vite sozinhas.
+O site é publicado na Netlify, configurada pelo `netlify.toml`: comando `npm run build`, pasta `dist` e Node 24. Na
+Netlify, `VITE_SITE_URL` é opcional: sem ela, o build usa a variável `URL`, que a plataforma preenche com o endereço
+principal do site. Cadastre `VITE_SITE_URL` quando usar um domínio próprio. O `404.html` na raiz de `dist/` é servido
+pela Netlify automaticamente para endereços inexistentes.
 
 ## Estrutura
 
@@ -103,7 +109,7 @@ render no navegador é idêntico ao HTML pronto.
 
 O histórico (IMC, faixa e data) fica só no `localStorage` do navegador. Peso e altura não são guardados, e o site não
 usa cookies de rastreamento nem analytics. Ao adicionar qualquer ferramenta nova, atualize `src/pages/PrivacyPage.tsx`
-e a data em `src/site/config.ts`. Ao escolher o host, preencha `HOSTING_PROVIDER` no mesmo arquivo.
+e a data em `src/site/config.ts`. Se trocar de host, atualize `HOSTING_PROVIDER` no mesmo arquivo.
 
 ## Fontes
 
