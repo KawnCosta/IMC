@@ -4,7 +4,6 @@ import { useTheme } from '@/hooks/useTheme'
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
 
   return (
     <Button
@@ -14,9 +13,11 @@ export function ThemeToggle() {
       className="size-11"
       onClick={toggleTheme}
       aria-label="Modo escuro"
-      aria-pressed={isDark}
+      aria-pressed={theme === 'dark'}
     >
-      {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+      {/* O ícone segue a classe .dark via CSS: aparece certo antes mesmo de o React saber o tema. */}
+      <Moon aria-hidden="true" className="dark:hidden" />
+      <Sun aria-hidden="true" className="hidden dark:block" />
     </Button>
   )
 }

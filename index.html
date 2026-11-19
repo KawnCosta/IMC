@@ -3,26 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de IMC online gratuita — resultado e classificação</title>
-    <meta
-      name="description"
-      content="Calcule seu IMC grátis: informe peso e altura e veja a classificação para adultos, a faixa de peso adequada e o que o resultado significa."
-    />
-    <link rel="canonical" href="__SITE_URL__/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#0a0a0a" />
+    <!-- Título, descrição, canonical e Open Graph de cada página: preenchidos por src/site/head.ts. -->
+    <!--page-head-->
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Calculadora de IMC" />
-    <meta property="og:title" content="Calculadora de IMC online gratuita — resultado e classificação" />
-    <meta
-      property="og:description"
-      content="Informe peso e altura e veja seu IMC, a classificação para adultos e a faixa de peso adequada para a sua altura."
-    />
-    <meta property="og:url" content="__SITE_URL__/" />
-    <meta property="og:locale" content="pt_BR" />
-
-    <!-- Aplica o tema antes da primeira pintura, evitando o "piscar" claro no modo escuro. Mesma regra de src/hooks/useTheme.ts. -->
+    <!-- Aplica o tema antes da primeira pintura, evitando o "piscar" claro no modo escuro. Mesma chave de src/hooks/useTheme.ts. -->
     <script>
       try {
         var stored = JSON.parse(localStorage.getItem('theme'))
@@ -33,7 +19,7 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

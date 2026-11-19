@@ -23,7 +23,7 @@ function App({ page }: AppProps) {
   const Page = PAGE_COMPONENTS[page.id]
 
   return (
-    <div className="mx-auto flex min-h-svh max-w-2xl flex-col gap-6 px-4 py-6">
+    <div data-page-id={page.id} className="mx-auto flex min-h-svh max-w-2xl flex-col gap-6 px-4 py-6">
       <SiteHeader />
       <main className="flex flex-col gap-6">
         <Page />

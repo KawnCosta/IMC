@@ -56,6 +56,12 @@ export function findPageByPath(pathname: string): PageMeta {
   return PAGES.find((page) => page.path === path) ?? NOT_FOUND_PAGE
 }
 
+/** Usado na hidratação: a página que o HTML pronto diz ser, independente da URL. */
+export function findPageById(id: string | undefined): PageMeta | null {
+  if (id === NOT_FOUND_PAGE.id) return NOT_FOUND_PAGE
+  return PAGES.find((page) => page.id === id) ?? null
+}
+
 export function getPage(id: Exclude<PageId, 'notFound'>): PageMeta {
   const page = PAGES.find((item) => item.id === id)
   if (!page) throw new Error(`Página desconhecida: ${id}`)

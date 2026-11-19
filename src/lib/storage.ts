@@ -3,10 +3,19 @@
  * armazenamento cheio) e o conteúdo salvo pode ter sido alterado à mão ou por uma versão antiga.
  */
 
-export function readStoredJson<T>(key: string, isValid: (value: unknown) => value is T): T | null {
+/** Texto bruto salvo na chave, ou `null` se não existir ou não for possível ler. */
+export function readStoredRaw(key: string): string | null {
   try {
-    const raw = window.localStorage.getItem(key)
-    if (raw === null) return null
+    return window.localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+/** Converte o texto salvo e só devolve o valor se ele tiver o formato esperado. */
+export function parseStoredJson<T>(raw: string | null, isValid: (value: unknown) => value is T): T | null {
+  if (raw === null) return null
+  try {
     const parsed: unknown = JSON.parse(raw)
     return isValid(parsed) ? parsed : null
   } catch {
