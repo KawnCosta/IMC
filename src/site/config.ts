@@ -27,6 +27,8 @@ export const HOSTING_PROVIDER: { name: string; privacyUrl: string } | null = nul
 /** Datas em ISO (AAAA-MM-DD). Atualize sempre que o texto correspondente mudar. */
 export const LAST_UPDATED = {
   about: '2026-11-19',
+  /** Revisão do conteúdo educativo da calculadora, exibida como "Revisado em". */
+  content: '2026-11-19',
   privacy: '2026-11-19',
   terms: '2026-11-19',
 } as const

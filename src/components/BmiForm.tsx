@@ -66,7 +66,8 @@ export function BmiForm({ values, errors, inputRefs, onFieldChange, onSubmit }: 
         <Alert role="note">
           <Info aria-hidden="true" />
           <AlertDescription>
-            Calculadora para adultos (20 anos ou mais). Não use para crianças, adolescentes ou gestantes.
+            Calculadora para adultos (20 anos ou mais). Não use para crianças, adolescentes ou gestantes. Tem 60 anos
+            ou mais? Veja os <a href="#imc-idosos">valores usados para idosos</a>.
           </AlertDescription>
         </Alert>
       </CardContent>

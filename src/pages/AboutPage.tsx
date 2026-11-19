@@ -46,7 +46,8 @@ export function AboutPage() {
           </li>
           <li>
             Pessoas com 60 anos ou mais: no Brasil, o Ministério da Saúde usa pontos de corte próprios (
-            <ExternalLink href={SOURCES.healthMinistryElderly.url}>Ministério da Saúde</ExternalLink>).
+            <ExternalLink href={SOURCES.healthMinistryElderly.url}>Ministério da Saúde</ExternalLink>), explicados na{' '}
+            <a href={`${getPage('home').path}#imc-idosos`}>seção sobre IMC para idosos</a>.
           </li>
         </ul>
       </section>
