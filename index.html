@@ -21,6 +21,16 @@
     />
     <meta property="og:url" content="__SITE_URL__/" />
     <meta property="og:locale" content="pt_BR" />
+
+    <!-- Aplica o tema antes da primeira pintura, evitando o "piscar" claro no modo escuro. Mesma regra de src/hooks/useTheme.ts. -->
+    <script>
+      try {
+        var stored = JSON.parse(localStorage.getItem('theme'))
+        var dark = stored === 'dark' || (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+      } catch (error) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

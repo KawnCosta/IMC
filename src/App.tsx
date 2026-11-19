@@ -3,6 +3,7 @@ import { BmiForm, type BmiInputRefs } from '@/components/BmiForm'
 import { BmiResultCard } from '@/components/BmiResultCard'
 import { InfoSections } from '@/components/InfoSections'
 import { SiteFooter } from '@/components/SiteFooter'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { useBmiCalculator } from '@/hooks/useBmiCalculator'
 import { trackEvent } from '@/lib/analytics'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
@@ -50,7 +51,10 @@ function App() {
   return (
     <main className="mx-auto flex min-h-svh max-w-2xl flex-col gap-6 px-4 py-10">
       <header className="grid gap-2">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Calculadora de IMC</h1>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Calculadora de IMC</h1>
+          <ThemeToggle />
+        </div>
         <p className="text-base text-muted-foreground">
           Calcule seu Índice de Massa Corporal e veja a classificação para adultos, com a faixa de peso adequada para
           a sua altura.
