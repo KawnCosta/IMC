@@ -1,5 +1,5 @@
-import { ExternalLink } from 'lucide-react'
 import { BmiCategoriesTable } from '@/components/BmiCategoriesTable'
+import { ExternalLink } from '@/components/ExternalLink'
 import { INFO_SECTIONS, SOURCES } from '@/content/bmiInfo'
 
 export function InfoSections() {
@@ -26,16 +26,7 @@ export function InfoSections() {
         <ul className="grid gap-2">
           {Object.values(SOURCES).map((source) => (
             <li key={source.url}>
-              <a
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-base underline underline-offset-4 hover:text-foreground/70"
-              >
-                {source.label}
-                <ExternalLink aria-hidden="true" className="size-4" />
-                <span className="sr-only">(abre em nova aba)</span>
-              </a>
+              <ExternalLink href={source.url}>{source.label}</ExternalLink>
             </li>
           ))}
         </ul>

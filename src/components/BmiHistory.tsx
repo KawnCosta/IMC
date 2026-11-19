@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import type { BmiHistoryEntry } from '@/hooks/useBmiHistory'
 import { formatNumber, getBmiCategory } from '@/lib/bmi'
 import { cn } from '@/lib/utils'
+import { getPage } from '@/site/pages'
 
 type BmiHistoryProps = {
   entries: readonly BmiHistoryEntry[]
@@ -23,7 +24,12 @@ export function BmiHistory({ entries, onClear }: BmiHistoryProps) {
           <CardTitle id="history-title" className="text-xl">
             Seus últimos cálculos
           </CardTitle>
-          <CardDescription>Salvos só neste navegador. Peso e altura não são guardados.</CardDescription>
+          <CardDescription>
+            Fica salvo somente neste navegador. Nada é enviado para servidores.{' '}
+            <a href={getPage('privacy').path} className="underline underline-offset-4 hover:text-foreground">
+              Saiba mais
+            </a>
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <ol className="grid gap-2">
