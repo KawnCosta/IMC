@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react'
 import { BmiForm, type BmiInputRefs } from '@/components/BmiForm'
 import { BmiResultCard } from '@/components/BmiResultCard'
 import { InfoSections } from '@/components/InfoSections'
+import { SiteFooter } from '@/components/SiteFooter'
 import { useBmiCalculator } from '@/hooks/useBmiCalculator'
+import { trackEvent } from '@/lib/analytics'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
 
 function describeResult(result: BmiResult | null): string {
@@ -33,7 +35,11 @@ function App() {
 
   function handleSubmit(): void {
     const outcome = calculate()
-    if (outcome.status === 'invalid') inputRefs[outcome.firstInvalidField].current?.focus()
+    if (outcome.status === 'invalid') {
+      inputRefs[outcome.firstInvalidField].current?.focus()
+      return
+    }
+    trackEvent('calculate_bmi')
   }
 
   function handleReset(): void {
@@ -69,6 +75,8 @@ function App() {
       <div className="mt-8 border-t pt-10">
         <InfoSections />
       </div>
+
+      <SiteFooter />
     </main>
   )
 }
