@@ -3,7 +3,7 @@
  * TypeScript puro (sem React), para ser usada também no build e no sitemap.
  */
 
-export type PageId = 'home' | 'privacy' | 'terms' | 'notFound'
+export type PageId = 'home' | 'about' | 'privacy' | 'terms' | 'notFound'
 
 export interface PageMeta {
   id: PageId
@@ -20,6 +20,13 @@ export const PAGES: readonly PageMeta[] = [
     title: 'Calculadora de IMC online gratuita — resultado e classificação',
     description:
       'Calcule seu IMC grátis: informe peso e altura e veja a classificação para adultos, a faixa de peso adequada e o que o resultado significa.',
+  },
+  {
+    id: 'about',
+    path: '/sobre/',
+    title: 'Sobre a Calculadora de IMC — quem fez, fontes e como o cálculo funciona',
+    description:
+      'Quem desenvolveu a Calculadora de IMC, de onde vêm as faixas (OMS e Ministério da Saúde) e como o cálculo, o arredondamento e a validação funcionam.',
   },
   {
     id: 'privacy',

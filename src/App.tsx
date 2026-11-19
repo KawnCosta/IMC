@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
+import { AboutPage } from '@/pages/AboutPage'
 import { HomePage } from '@/pages/HomePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { PrivacyPage } from '@/pages/PrivacyPage'
@@ -9,6 +10,7 @@ import type { PageId, PageMeta } from '@/site/pages'
 
 const PAGE_COMPONENTS: Record<PageId, () => ReactNode> = {
   home: HomePage,
+  about: AboutPage,
   privacy: PrivacyPage,
   terms: TermsPage,
   notFound: NotFoundPage,

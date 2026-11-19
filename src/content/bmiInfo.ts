@@ -28,6 +28,10 @@ export const SOURCES = {
     label: 'CDC — Child and Teen BMI Calculator',
     url: 'https://www.cdc.gov/bmi/child-teen-calculator/index.html',
   },
+  healthMinistryElderly: {
+    label: 'Ministério da Saúde — Linhas de Cuidado: obesidade no adulto (classificação para idosos)',
+    url: 'https://linhasdecuidado.saude.gov.br/portal/obesidade-no-adulto/unidade-de-atencao-primaria/planejamento-terapeutico/',
+  },
 } as const satisfies Record<string, InfoSource>
 
 export const INFO_SECTIONS: readonly InfoSection[] = [

@@ -2,6 +2,7 @@ import { getPage } from '@/site/pages'
 
 const FOOTER_LINKS = [
   { label: 'Calculadora', page: getPage('home') },
+  { label: 'Sobre', page: getPage('about') },
   { label: 'Privacidade', page: getPage('privacy') },
   { label: 'Termos de uso', page: getPage('terms') },
 ] as const
