@@ -4,10 +4,11 @@
  * 1. Lê o dist/index.html gerado pelo Vite (com os <script> e <link> de CSS já apontando para os arquivos finais).
  * 2. Renderiza cada página com React (dist-server/entry-server.js) e injeta o HTML e as tags do <head>.
  * 3. Escreve uma pasta por página (dist/privacidade/index.html), o 404.html, o robots.txt e o sitemap.xml.
+ * 4. Apaga o dist-server/: ele só serve para este script. O site publicado é apenas o dist/.
  *
  * Roda direto no Node (que entende TypeScript sem compilar), por isso os imports usam a extensão .ts.
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { loadEnv } from 'vite'
@@ -20,14 +21,19 @@ interface ServerEntry {
 
 const ROOT_DIR = path.resolve(import.meta.dirname, '..')
 const CLIENT_DIR = path.join(ROOT_DIR, 'dist')
-const SERVER_ENTRY = path.join(ROOT_DIR, 'dist-server', 'entry-server.js')
+const SERVER_DIR = path.join(ROOT_DIR, 'dist-server')
+const SERVER_ENTRY = path.join(SERVER_DIR, 'entry-server.js')
 
-/** O endereço público vem de VITE_SITE_URL (.env.production ou variáveis do host). Sem ele, o build para. */
+/**
+ * O endereço público vem de VITE_SITE_URL (.env.production ou variáveis do host). Na Netlify, se ela não for
+ * definida, usa-se URL, que a plataforma preenche com o endereço principal do site. Sem nenhum dos dois, o build para.
+ */
 function resolveSiteUrl(): string {
-  const siteUrl = loadEnv('production', ROOT_DIR, 'VITE_').VITE_SITE_URL?.trim().replace(/\/+$/, '')
+  const configuredUrl = loadEnv('production', ROOT_DIR, 'VITE_').VITE_SITE_URL || process.env.URL
+  const siteUrl = configuredUrl?.trim().replace(/\/+$/, '')
   if (!siteUrl) {
     throw new Error(
-      'Defina VITE_SITE_URL com o endereço público do site (ex.: VITE_SITE_URL=https://meu-site.vercel.app) ' +
+      'Defina VITE_SITE_URL com o endereço público do site (ex.: VITE_SITE_URL=https://meu-site.netlify.app) ' +
         'no arquivo .env.production ou nas variáveis de ambiente do host.',
     )
   }
@@ -75,6 +81,7 @@ async function main(): Promise<void> {
   }
   await writeOutput(path.join(CLIENT_DIR, 'robots.txt'), buildRobotsTxt(siteUrl))
   await writeOutput(path.join(CLIENT_DIR, 'sitemap.xml'), buildSitemapXml(siteUrl))
+  await rm(SERVER_DIR, { recursive: true, force: true })
 }
 
 await main()
