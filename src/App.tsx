@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { BmiForm, type BmiInputRefs } from '@/components/BmiForm'
+import { BmiHistory } from '@/components/BmiHistory'
 import { BmiResultCard } from '@/components/BmiResultCard'
 import { InfoSections } from '@/components/InfoSections'
 import { SiteFooter } from '@/components/SiteFooter'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useBmiCalculator } from '@/hooks/useBmiCalculator'
+import { useBmiHistory } from '@/hooks/useBmiHistory'
 import { trackEvent } from '@/lib/analytics'
 import { formatNumber, type BmiResult } from '@/lib/bmi'
 
@@ -19,6 +21,7 @@ function prefersReducedMotion(): boolean {
 
 function App() {
   const { values, errors, result, setFieldValue, calculate, reset } = useBmiCalculator()
+  const history = useBmiHistory()
   const resultRef = useRef<HTMLElement>(null)
   const inputRefs: BmiInputRefs = {
     weight: useRef<HTMLInputElement>(null),
@@ -40,11 +43,18 @@ function App() {
       inputRefs[outcome.firstInvalidField].current?.focus()
       return
     }
+    history.addEntry(outcome.result)
     trackEvent('calculate_bmi')
   }
 
   function handleReset(): void {
     reset()
+    inputRefs.weight.current?.focus()
+  }
+
+  // O card do histórico some ao apagar; o foco iria para o <body> se não fosse movido.
+  function handleClearHistory(): void {
+    history.clearHistory()
     inputRefs.weight.current?.focus()
   }
 
@@ -75,6 +85,8 @@ function App() {
       </p>
 
       {result && <BmiResultCard result={result} cardRef={resultRef} onReset={handleReset} />}
+
+      <BmiHistory entries={history.entries} onClear={handleClearHistory} />
 
       <div className="mt-8 border-t pt-10">
         <InfoSections />
